@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Vault — Weekly Synthesis | Jun 26, 2026</title>
+  <style>
+    :root {
+      --bg: #0f0e0b;
+      --surface: #1c1a14;
+      --surface-2: #252119;
+      --surface-3: #2e2b20;
+      --gold: #c9a94c;
+      --gold-dim: #7a6530;
+      --ivory: #e8dfc8;
+      --muted: #6a5e48;
+      --faint: #3a3526;
+      --green: #3d7a50;
+      --green-bg: #1a2e20;
+      --red: #8c3030;
+      --red-bg: #2e1414;
+      --orange: #9c5a20;
+      --orange-bg: #2e1e0a;
+      --yellow: #8a7820;
+      --yellow-bg: #2a2510;
+      --purple: #5c3d7a;
+      --purple-bg: #1e1428;
+      --cyan: #2a6c7a;
+      --cyan-bg: #0e2228;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--ivory);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--gold-dim);
+      padding: 28px 40px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    header h1 {
+      font-size: 13px;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    header .title {
+      font-size: 28px;
+      font-weight: normal;
+      color: var(--ivory);
+      margin-top: 6px;
+    }
+    header .meta {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* ── FEAR BANNER ── */
+    .fear-banner {
+      background: linear-gradient(135deg, #2e0a0a, #1a0808);
+      border-top: 1px solid #5c2020;
+      border-bottom: 1px solid #5c2020;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .fear-banner .label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #8c3030;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .fear-banner .text {
+      color: #d08080;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    /* ── SEASON STRIP ── */
+    .season-strip {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--faint);
+      padding: 16px 40px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .season-label {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .season-priority {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .season-priority .num {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      color: var(--bg);
+      font-size: 11px;
+      font-family: 'Courier New', monospace;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 32px 40px;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      margin-top: 40px;
+    }
+    .section-header:first-child { margin-top: 0; }
+    .section-header h2 {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .section-header .line {
+      flex: 1;
+      height: 1px;
+      background: var(--faint);
+    }
+
+    /* ── DOMAIN GRID ── */
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+
+    .domain-card {
+      background: var(--surface);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .domain-card:hover { border-color: var(--gold-dim); }
+
+    .domain-card .card-header {
+      padding: 14px 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--faint);
+    }
+    .domain-card .domain-name {
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .domain-card .domain-icon {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .status-badge {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+    .status-active    { background: var(--green-bg);  color: #5cad70; border: 1px solid #2d5a3a; }
+    .status-blocked   { background: var(--red-bg);    color: #ad5050; border: 1px solid #5a2020; }
+    .status-skeleton  { background: var(--orange-bg); color: #ad7040; border: 1px solid #5a2e10; }
+    .status-stalled   { background: var(--yellow-bg); color: #ad9840; border: 1px solid #5a4c10; }
+    .status-building  { background: var(--cyan-bg);   color: #4090a0; border: 1px solid #1a4850; }
+
+    .domain-card .card-body {
+      padding: 14px 18px;
+    }
+    .card-insight {
+      font-style: italic;
+      color: var(--ivory);
+      font-size: 13px;
+      border-left: 2px solid var(--gold-dim);
+      padding-left: 12px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .card-items {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 2;
+    }
+    .card-items .item {
+      display: flex;
+      gap: 8px;
+    }
+    .card-items .dot { color: var(--gold-dim); flex-shrink: 0; }
+
+    .card-action {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: var(--surface-2);
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+    .card-action .action-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .card-detail {
+      display: none;
+      padding: 12px 18px;
+      background: var(--surface-3);
+      border-top: 1px solid var(--faint);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .card-detail.open { display: block; }
+    .card-detail .tension {
+      margin-top: 8px;
+      padding: 6px 10px;
+      background: var(--red-bg);
+      border-left: 2px solid var(--red);
+      font-size: 11px;
+      color: #ad5050;
+    }
+    .card-detail .signal {
+      margin-top: 8px;
+      padding: 6px 10px;
+      background: var(--purple-bg);
+      border-left: 2px solid var(--purple);
+      font-size: 11px;
+      color: #9060c0;
+    }
+
+    /* ── CONNECTIONS SVG ── */
+    .connections-wrap {
+      background: var(--surface);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .connections-wrap svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ── TENSIONS ── */
+    .tensions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 12px;
+    }
+    .tension-card {
+      background: var(--red-bg);
+      border: 1px solid #5c2020;
+      border-radius: 4px;
+      padding: 14px 18px;
+    }
+    .tension-card .t-num {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #8c3030;
+      margin-bottom: 6px;
+    }
+    .tension-card .t-title {
+      font-size: 13px;
+      color: #d08080;
+      margin-bottom: 6px;
+    }
+    .tension-card .t-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .tension-card .t-type {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      padding: 2px 6px;
+      border: 1px solid #8c3030;
+      color: #8c3030;
+      text-transform: uppercase;
+    }
+
+    /* ── LOOPS ── */
+    .loops-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 12px;
+    }
+    .loop-card {
+      background: var(--orange-bg);
+      border: 1px solid #5a2e10;
+      border-radius: 4px;
+      padding: 14px 18px;
+    }
+    .loop-card .l-name {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .loop-card .l-flow {
+      font-size: 12px;
+      color: #c09060;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .loop-card .l-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── NEXT ACTIONS ── */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .action-card {
+      background: var(--green-bg);
+      border: 1px solid #2d5a3a;
+      border-radius: 4px;
+      padding: 14px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .action-num {
+      font-family: 'Courier New', monospace;
+      font-size: 20px;
+      color: var(--green);
+      line-height: 1;
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+    .action-body .a-domain {
+      font-family: 'Courier New', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #3d7a50;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .action-body .a-text {
+      font-size: 13px;
+      color: #80c090;
+      line-height: 1.4;
+    }
+    .action-body .a-why {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* ── NEGLECTED ── */
+    .neglected-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .neglected-card {
+      background: var(--surface-2);
+      border: 1px solid var(--faint);
+      border-left: 3px solid var(--orange);
+      border-radius: 3px;
+      padding: 12px 14px;
+    }
+    .neglected-card .n-label {
+      font-family: 'Courier New', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .neglected-card .n-text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 60px;
+      padding: 20px 40px;
+      border-top: 1px solid var(--faint);
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
+    }
+
+    /* ── DOMAIN COLOR ACCENTS ── */
+    .career    .card-header { border-left: 3px solid var(--green); }
+    .faith     .card-header { border-left: 3px solid #5c3d7a; }
+    .health    .card-header { border-left: 3px solid var(--orange); }
+    .money     .card-header { border-left: 3px solid var(--yellow); }
+    .relations .card-header { border-left: 3px solid var(--cyan); }
+    .ai        .card-header { border-left: 3px solid var(--cyan); }
+    .spanish   .card-header { border-left: 3px solid #7a6020; }
+    .philosophy .card-header { border-left: 3px solid #5c3d7a; }
+    .learning  .card-header { border-left: 3px solid #3a6a5a; }
+    .discipline .card-header { border-left: 3px solid var(--red); }
+
+    @media (max-width: 700px) {
+      header, main { padding: 20px; }
+      header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .season-strip { padding: 14px 20px; }
+      .fear-banner { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div>
+    <div style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:4px;color:var(--gold-dim);text-transform:uppercase;">The Vault</div>
+    <div class="title">Weekly Synthesis</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:4px;">Visual Pattern Map — All Life Domains</div>
+  </div>
+  <div class="meta">
+    Jun 26, 2026<br>
+    Banquet Captain · Westin Austin<br>
+    Season 03 · Foundation Building
+  </div>
+</header>
+
+<!-- ── FEAR BANNER ── -->
+<div class="fear-banner">
+  <div class="label">Structural Fear</div>
+  <div class="text">"Being seen wanting something real — and having it not come." This organizes the tribeless condition, the covers, the fragmentation. Everything else is downstream.</div>
+</div>
+
+<!-- ── SEASON STRIP ── -->
+<div class="season-strip">
+  <div class="season-label">Current Season</div>
+  <div class="season-priority">
+    <div class="num">1</div>
+    <span>Bartending + Communication Skills — the gate to Hotel Trinity</span>
+  </div>
+  <div style="width:1px;height:20px;background:var(--faint);"></div>
+  <div class="season-priority">
+    <div class="num">2</div>
+    <span>Parish / Find a tribe — analysis has not converted to action</span>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- DOMAINS -->
+  <div class="section-header">
+    <h2>Life Domains</h2>
+    <div class="line"></div>
+    <div style="font-family:'Courier New',monospace;font-size:10px;color:var(--muted);white-space:nowrap;">click any card to expand</div>
+  </div>
+
+  <div class="domain-grid">
+
+    <!-- CAREER -->
+    <div class="domain-card career" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">⚑</span><span class="domain-name">Career</span></div>
+        <span class="status-badge status-stalled">Stalled on Skills</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">"Corporate-level decisions from a ground-level view." The GM track is a proving ground, not the destination. Redesign what hospitality operations intelligence looks like.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Banquet Bot — live (6 tiles, GitHub Pages)</div>
+          <div class="item"><span class="dot">▸</span> Skills Dev — Priority 1 (bartending + Dylan-model comm.)</div>
+          <div class="item"><span class="dot">▸</span> Hotel Trinity Captain Brief — ON HOLD</div>
+          <div class="item"><span class="dot">▸</span> Ebrahim Ansari window — open; hotel opens end of 2026</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Buy first bartending practice bottles — this is the literal first step
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="tension">CONTRADICTS: "White Lodging is corrupt" (Oct 2025) vs Hotel Trinity GM as stated goal. Unresolved.</div>
+        <div class="tension">CONTRADICTS: Austin GM track (location-specific) vs NYC as stated primary aspiration. No explicit decision made.</div>
+        <div class="signal">SIGNAL: Ebrahim Ansari is the Opening GM at Hotel Trinity. Hotel opens before end of 2026. The window is specific and finite. Banquet Bot + bartending + communication = the differentiating pitch package.</div>
+        <div class="signal">PATTERN: 8 years of ambitious plans in new environments followed by continued operation in current one. Dagars → stayed. Austin → stayed.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Phase 1 credentials not started: ServSafe Manager, CHS. Event Log exists but never populated (0 events logged).</div>
+      </div>
+    </div>
+
+    <!-- FAITH -->
+    <div class="domain-card faith" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">✝</span><span class="domain-name">Faith</span></div>
+        <span class="status-badge status-stalled">Deepening, Unsupported</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">"Life is deeply religious to me. Prayer and intense reflection seem natural. How could any mode of being be otherwise?" Faith is a native interpretive frame — not a coping tool. Most articulate during the worst periods.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Active: Brothers Karamazov (serious annotation), JP2 ToB</div>
+          <div class="item"><span class="dot">▸</span> 3 sacramental events in Feb-Mar 2025; then what?</div>
+          <div class="item"><span class="dot">▸</span> Named parishes: St. Albert the Great, St. Mary Cathedral</div>
+          <div class="item"><span class="dot">▸</span> "Accept the suffering and pursue Christ" — May 2026</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Show up at St. Albert or St. Mary — once. Not plan to go. Go.
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="tension">BIND: Secular Austin = values friction. Parish = epistemic friction (people not asking the right questions). The tribe that holds both Schmachtenberger-level questioning AND Catholic commitment doesn't visibly exist in Austin.</div>
+        <div class="tension">CONTRADICTS: Ivan (intellectual faith) vs Alyosha (lived faith). Jason maps onto this split directly. The Dostoevsky reading is a mirror.</div>
+        <div class="signal">SIGNAL: "The true, the good, and the beautiful" — applied as a truth criterion for institutions. Any system not oriented toward these three is "not real." This is Thomistic. It's integrated, not decorative.</div>
+        <div class="signal">DEEPER LAYER: He is more serious about Catholicism than most Catholics he meets. That seriousness is precisely what makes the community form alienating. He needs Chesterton in a room, not suburban parish culture.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">No spiritual director. No regular confession. No structured daily prayer documented.</div>
+      </div>
+    </div>
+
+    <!-- HEALTH -->
+    <div class="domain-card health" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">◈</span><span class="domain-name">Health / Body</span></div>
+        <span class="status-badge status-blocked">Neglected</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">"Calm body → calm mind." Fight-or-flight is the CHRONIC operating mode — not a situational reaction. Body state is upstream of discipline, cognition, lust vulnerability. This is the hidden lever.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Weightlifting + martial arts: stated goals, not active</div>
+          <div class="item"><span class="dot">▸</span> Walking dropped when external prompt removed</div>
+          <div class="item"><span class="dot">▸</span> Fight-or-flight self-diagnosed as current baseline (May 2026)</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          One physical anchor — 20 minutes morning walk minimum. Body-first unlocks everything else.
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="tension">BLOCKS: Discipline collapse. Lust vulnerability spikes in depleted nervous system state. Thinking becomes circular when body is dysregulated. This domain is upstream of at least 4 others.</div>
+        <div class="signal">SIGNAL: "I need systems of engagement and charisma and to get out of fighter flight mode" (May 2026). He already named the solution — body regulation as prerequisite for social engagement systems.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">No documented exercise routine. BJJ gym mentioned in Sep 2025 (never joined). Health and Energy is a skeleton wiki page.</div>
+      </div>
+    </div>
+
+    <!-- MONEY -->
+    <div class="domain-card money" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">◆</span><span class="domain-name">Money / Wealth</span></div>
+        <span class="status-badge status-blocked">Skeleton Only</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">"Order in Money Creates Room Above." Financial disorder is not neutral — it forecloses options and concentrates cognitive load on survival. No financial plan exists in the vault.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Wealth Strategy page: goals stated, zero financial data</div>
+          <div class="item"><span class="dot">▸</span> "Location freedom" as stated aspiration — no vehicle defined</div>
+          <div class="item"><span class="dot">▸</span> No savings targets, no investment framework, no budget</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Define one number: what does "financial stability" mean in actual dollars?
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="tension">CONTRADICTS: Location freedom (digital flexibility) vs GM career track (institutional, location-tied). These are structurally incompatible unless the Banquet Bot / tech path becomes the wealth vehicle instead of the hotel ladder.</div>
+        <div class="signal">SIGNAL: Career → Money is the current assumed vehicle. But the tech bridge (Banquet Bot → White Lodging platform) could produce a non-ladder wealth path. This has not been explicitly planned.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">The Master Plan (06 Outputs) has a wealth section — worth re-reading to see if any of it is still operative.</div>
+      </div>
+    </div>
+
+    <!-- RELATIONSHIPS -->
+    <div class="domain-card relations" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">⊕</span><span class="domain-name">Relationships</span></div>
+        <span class="status-badge status-blocked">Structurally Blocked</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">Marriage is not one goal among four — it is the ache underneath all four. "I was so lonely thinking about Nayeli." "Toward your future wife. Toward fatherhood. That is the holy battle." 8 years tribeless despite knowing the solution.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Jackie — 8 years; named as inauthentic cover. Still present Jan 2025.</div>
+          <div class="item"><span class="dot">▸</span> Roommate K conflict → move (Dec 2025)</div>
+          <div class="item"><span class="dot">▸</span> Mom: primary relational anchor; aging is becoming a real variable</div>
+          <div class="item"><span class="dot">▸</span> No deep friendships documented in Austin</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Parish attendance — this is the one Austin environment where the values friction doesn't apply
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="tension">WHY IT PERSISTS: The tribeless condition is not a logistics problem. Community requires the wanting to be visible — which creates the possibility of rejection — which exposes the wanting. The cover (inauthentic relationships) makes the wanting invisible and safe.</div>
+        <div class="tension">CONTRADICTS: Marriage goal vs missing preconditions — no community, no stable spiritual practice, no consistent daily structure. This is a sequencing issue masking as a timing issue.</div>
+        <div class="signal">WHAT BELONGING LOOKS LIKE (Jason's own words, 2026-06-07): "A room of open discussion where you can really explore issues in a philosophical way. Smart, open people who aren't trying to be performative. Truly open to exposing their epistemology."</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Arc reading: marriage is further away than the plan says. The 8-year behavioral pattern does not support a 2-year timeline without structural change to community conditions.</div>
+      </div>
+    </div>
+
+    <!-- AI / CODING -->
+    <div class="domain-card ai" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">⌘</span><span class="domain-name">AI / Coding</span></div>
+        <span class="status-badge status-building">Building</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">The hospitality-AI bridge is the honest path — not the most impressive on paper, but built on real operational knowledge. A tool serving White Lodging corporate (not just one hotel) becomes a GM-level initiative, not a department project.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Banquet Bot — live at GitHub Pages, 6 nav tiles</div>
+          <div class="item"><span class="dot">▸</span> Client names aliased (pending corporate review)</div>
+          <div class="item"><span class="dot">▸</span> Make.com Gmail trigger — built, not fully wired</div>
+          <div class="item"><span class="dot">▸</span> Railway backend — planned, not confirmed active</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Alias revert when corporate review done; light-mode pass on rundown.html
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="signal">INSIGHT: White Lodging properties operate as closed knowledge silos. A shared operational database across hotels is a corporate-level pitch — the exact level that gets Ebrahim Ansari's attention. This reframes Banquet Bot from a personal tool to a platform proposal.</div>
+        <div class="tension">SKILL GAP: The aspiration to build AI tools is real. Current JS/AI engineering capability is early-stage. "Don't consume tech — create it" vs actual build capacity is a live tension. Banquet Bot is the vehicle for closing this gap in public.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">The Westin Domain Helper (ChatGPT with menus loaded) is a self-prototyped Banquet Bot proof of concept. Already working at captain level.</div>
+      </div>
+    </div>
+
+    <!-- SPANISH -->
+    <div class="domain-card spanish" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">◐</span><span class="domain-name">Spanish</span></div>
+        <span class="status-badge status-active">Active</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">Grand Arc method: wonder → myth → poetry → fact. Etymology as the entry point. "Petra = piedra. Tu es Petrus, et super hanc petram — the pun IS the theology." The best-structured learning track in the vault.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Last session: 2026-06-19 (Street Grammar, Entry 1-3 + pronoun pivot)</div>
+          <div class="item"><span class="dot">▸</span> Current: Tier 2 / Transaction Layer; object pronouns in progress</div>
+          <div class="item"><span class="dot">▸</span> Recurring gap: accent marks drop under production pressure</div>
+          <div class="item"><span class="dot">▸</span> 8/10 on last formal quiz (10 sentences)</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Indirect object pronouns (le/les) → complete Entry 4 quiz → Entry 5
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="signal">SIGNAL: This is working. The etymological-theological integration (Aquinas, Scripture, Dostoevsky) turns grammar into intellectual experience. Cervantes + García Márquez as sentence sources is the right call. Don't change the method.</div>
+        <div class="tension">PATTERN: Daily structure for Spanish collapses without architecture. Last session was June 19 — 7 days ago. Without a fixed time slot, drift accumulates.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Accent marks: preparó, llegó, sería, podría. Flag at start of every session. These are recurring misses across multiple sessions.</div>
+      </div>
+    </div>
+
+    <!-- PHILOSOPHY -->
+    <div class="domain-card philosophy" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">∞</span><span class="domain-name">Philosophy</span></div>
+        <span class="status-badge status-stalled">Rich — Isolated</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">"The Complete Thinker Ideal" — refusing tribal capture produces intellectual freedom but prevents belonging. The same position that enables synthesis prevents community. The superiority of standing apart is also protection against being found wanting.</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Schmachtenberger (meta-crisis, first principles) as primary frame</div>
+          <div class="item"><span class="dot">▸</span> Chesterton + Dostoevsky + Aquinas as intellectual home</div>
+          <div class="item"><span class="dot">▸</span> "AI Holy War — cyborgs battle it out over consciousness and God"</div>
+          <div class="item"><span class="dot">▸</span> Brothers Karamazov as active serious study (not just reference)</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          The philosophy is advanced enough. Write one applied output — even one paragraph.
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="signal">SIGNAL: "AI Holy War" — Jason sees spiritual stakes in the AI moment. The meta-narrative (collective intelligence platform thesis) in 06 Outputs is exactly where philosophy becomes application. This is the synthesis looking for a vehicle.</div>
+        <div class="tension">TENSION: Schmachtenberger's framework (first-principles, question everything) is the intellectual home but it's NOT a Catholic community. The Schmachtenberger-Chesterton synthesis in community form is what Jason actually needs — and it doesn't exist as a physical group in Austin.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">The Meta Narrative doc in 06 Outputs is the most important underused vault artifact. It's the bridge between philosophy and action.</div>
+      </div>
+    </div>
+
+    <!-- LEARNING -->
+    <div class="domain-card learning" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">◭</span><span class="domain-name">Learning</span></div>
+        <span class="status-badge status-stalled">Intake without Output</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">"Learning Must Lead Somewhere." 80+ books in the reading library. Ideas without outputs. Voracious intake + inconsistent production. Spanish is the only structured track. "Study without building is entertainment."</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Reading Library — 80+ books, 9 categories (built Jun 26)</div>
+          <div class="item"><span class="dot">▸</span> Drawing, chess, calculus, history — all named, none structured</div>
+          <div class="item"><span class="dot">▸</span> Solo learning fails without structure AND a project target</div>
+          <div class="item"><span class="dot">▸</span> Study sessions exist; outputs from them do not</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Every session must produce one concrete output — even a single paragraph
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="tension">PATTERN: "Build Rather Than Just Learn" is a permanent note — which means the pattern of learning without building has been recognized and named. It persists anyway. Recognition is not resolution.</div>
+        <div class="signal">SIGNAL: Spanish works because it has structure AND produces outputs (quiz scores, artifacts, notes). That model can be replicated for other learning tracks. What's the Banquet Bot of chess? Of drawing?</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">eCornell hospitality certificate and ACC courses both mentioned — neither started. The credential gap in career is partly a learning execution problem.</div>
+      </div>
+    </div>
+
+    <!-- PERSONAL DISCIPLINE -->
+    <div class="domain-card discipline" onclick="toggle(this)">
+      <div class="card-header">
+        <div><span class="domain-icon">⊘</span><span class="domain-name">Personal Discipline</span></div>
+        <span class="status-badge status-blocked">Solo Structure Collapsed</span>
+      </div>
+      <div class="card-body">
+        <div class="card-insight">"Discipline Requires Architecture — not character." Work structure holds under external accountability. Same person, solo: collapses. This is a design problem. "The person who designs their daily routine goes further than the person who negotiates with themselves every day."</div>
+        <div class="card-items">
+          <div class="item"><span class="dot">▸</span> Collapse zone: evenings, post-work, unstructured solo time</div>
+          <div class="item"><span class="dot">▸</span> Resistance framework known; application inconsistent</div>
+          <div class="item"><span class="dot">▸</span> Morning Startup Protocol paused since 2026-06-23</div>
+          <div class="item"><span class="dot">▸</span> Dashboard.md is stale; no running renewal anchor</div>
+        </div>
+        <div class="card-action">
+          <div class="action-label">Next Action</div>
+          Design ONE non-negotiable daily anchor. Not a system — one thing. Pre-decide it now.
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="tension">LOOP: Motivated planning → inconsistent follow-through → guilt/frustration → fragmentation → reset → repeat. This loop runs underneath every domain. It is the primary infrastructure problem.</div>
+        <div class="signal">TECHNIQUE: Stop mid-task intentionally — not at chapter ends or completion points. Leave an open loop. Guarantees tractable re-entry. The standard intuition (finish a clean unit) creates blank re-entry problems.</div>
+        <div class="signal">RULE: "This is not a time problem. This is not a discipline problem. This is a mood regulation impulse." Label it. Then reduce to smallest physical action and start. The feeling doesn't go away before you start — accept that.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Four Questions: God / Future / Body / Human Connection. A minimum viable day. These are known. The question is whether they're running.</div>
+      </div>
+    </div>
+
+  </div><!-- /domain-grid -->
+
+
+  <!-- ── CONNECTIONS MAP ── -->
+  <div class="section-header" style="margin-top:48px;">
+    <h2>Domain Connections</h2>
+    <div class="line"></div>
+  </div>
+  <div class="connections-wrap">
+    <svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="background:#1c1a14;">
+      <defs>
+        <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#3d7a50"/>
+        </marker>
+        <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#8c3030"/>
+        </marker>
+        <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#9c5a20"/>
+        </marker>
+        <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#5c3d7a"/>
+        </marker>
+      </defs>
+
+      <!-- Domain nodes -->
+      <!-- Career: center-top -->
+      <g transform="translate(450,70)">
+        <rect x="-50" y="-18" width="100" height="36" rx="4" fill="#1a2e20" stroke="#2d5a3a" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#5cad70" font-size="11" font-family="Georgia">Career</text>
+      </g>
+      <!-- AI: right-top -->
+      <g transform="translate(680,130)">
+        <rect x="-50" y="-18" width="100" height="36" rx="4" fill="#0e2228" stroke="#1a4850" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#4090a0" font-size="11" font-family="Georgia">AI/Coding</text>
+      </g>
+      <!-- Spanish: far right -->
+      <g transform="translate(790,250)">
+        <rect x="-50" y="-18" width="100" height="36" rx="4" fill="#2a2510" stroke="#5a4c10" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#ad9840" font-size="11" font-family="Georgia">Spanish</text>
+      </g>
+      <!-- Learning: right-mid -->
+      <g transform="translate(720,360)">
+        <rect x="-50" y="-18" width="100" height="36" rx="4" fill="#1a2e20" stroke="#2d5a3a" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#5cad70" font-size="11" font-family="Georgia">Learning</text>
+      </g>
+      <!-- Money: bottom-right -->
+      <g transform="translate(580,430)">
+        <rect x="-50" y="-18" width="100" height="36" rx="4" fill="#2a2510" stroke="#5a4c10" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#ad9840" font-size="11" font-family="Georgia">Money</text>
+      </g>
+      <!-- Health: bottom-center -->
+      <g transform="translate(450,430)">
+        <rect x="-50" y="-18" width="100" height="36" rx="4" fill="#2e1e0a" stroke="#5a2e10" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#c09060" font-size="11" font-family="Georgia">Health</text>
+      </g>
+      <!-- Relations: bottom-left -->
+      <g transform="translate(310,430)">
+        <rect x="-56" y="-18" width="112" height="36" rx="4" fill="#0e2228" stroke="#1a4850" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#4090a0" font-size="11" font-family="Georgia">Relationships</text>
+      </g>
+      <!-- Discipline: left-center -->
+      <g transform="translate(160,310)">
+        <rect x="-56" y="-18" width="112" height="36" rx="4" fill="#2e1414" stroke="#5c2020" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#ad5050" font-size="11" font-family="Georgia">Discipline</text>
+      </g>
+      <!-- Faith: left-top -->
+      <g transform="translate(200,150)">
+        <rect x="-50" y="-18" width="100" height="36" rx="4" fill="#1e1428" stroke="#3d2860" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#9060c0" font-size="11" font-family="Georgia">Faith</text>
+      </g>
+      <!-- Philosophy: far left -->
+      <g transform="translate(80,250)">
+        <rect x="-56" y="-18" width="112" height="36" rx="4" fill="#1e1428" stroke="#3d2860" stroke-width="1"/>
+        <text text-anchor="middle" y="5" fill="#9060c0" font-size="11" font-family="Georgia">Philosophy</text>
+      </g>
+
+      <!-- EDGES — supports (green) -->
+      <!-- AI → Career: supports -->
+      <line x1="630" y1="130" x2="510" y2="80" stroke="#3d7a50" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <text x="560" y="95" fill="#3d7a50" font-size="9" font-family="Courier New">supports</text>
+
+      <!-- Career → Money: supports -->
+      <line x1="480" y1="88" x2="556" y2="412" stroke="#3d7a50" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <text x="524" y="255" fill="#3d7a50" font-size="9" font-family="Courier New">supports</text>
+
+      <!-- Learning → AI: supports -->
+      <line x1="672" y1="360" x2="680" y2="148" stroke="#3d7a50" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <text x="686" y="258" fill="#3d7a50" font-size="9" font-family="Courier New">supports</text>
+
+      <!-- Spanish → Philosophy: supports -->
+      <line x1="740" y1="250" x2="192" y2="250" stroke="#3d7a50" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <text x="430" y="244" fill="#3d7a50" font-size="9" font-family="Courier New">supports</text>
+
+      <!-- Philosophy → Faith: supports -->
+      <line x1="128" y1="232" x2="168" y2="168" stroke="#5c3d7a" stroke-width="1.5" marker-end="url(#arr-purple)"/>
+      <text x="110" y="195" fill="#5c3d7a" font-size="9" font-family="Courier New">supports</text>
+
+      <!-- Faith → Relationships: supports -->
+      <line x1="222" y1="168" x2="280" y2="412" stroke="#3d7a50" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <text x="218" y="300" fill="#3d7a50" font-size="9" font-family="Courier New">supports</text>
+
+      <!-- EDGES — blocks (red) -->
+      <!-- Discipline → Career: blocks -->
+      <line x1="216" y1="292" x2="400" y2="80" stroke="#8c3030" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+      <text x="270" y="175" fill="#8c3030" font-size="9" font-family="Courier New">blocks</text>
+
+      <!-- Discipline → Learning: blocks -->
+      <line x1="216" y1="310" x2="664" y2="342" stroke="#8c3030" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+      <text x="415" y="318" fill="#8c3030" font-size="9" font-family="Courier New">blocks</text>
+
+      <!-- Discipline → Faith: blocks -->
+      <line x1="182" y1="292" x2="202" y2="168" stroke="#8c3030" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+      <text x="178" y="228" fill="#8c3030" font-size="9" font-family="Courier New">blocks</text>
+
+      <!-- Health → Discipline: blocks (fight-or-flight upstream) -->
+      <line x1="400" y1="430" x2="216" y2="328" stroke="#9c5a20" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-orange)"/>
+      <text x="290" y="388" fill="#9c5a20" font-size="9" font-family="Courier New">feeds</text>
+
+      <!-- LEGEND -->
+      <g transform="translate(20,20)">
+        <line x1="0" y1="8" x2="24" y2="8" stroke="#3d7a50" stroke-width="1.5" marker-end="url(#arr-green)"/>
+        <text x="28" y="12" fill="#3d7a50" font-size="9" font-family="Courier New">supports</text>
+        <line x1="0" y1="24" x2="24" y2="24" stroke="#8c3030" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+        <text x="28" y="28" fill="#8c3030" font-size="9" font-family="Courier New">blocks</text>
+        <line x1="0" y1="40" x2="24" y2="40" stroke="#5c3d7a" stroke-width="1.5" marker-end="url(#arr-purple)"/>
+        <text x="28" y="44" fill="#5c3d7a" font-size="9" font-family="Courier New">enriches</text>
+        <line x1="0" y1="56" x2="24" y2="56" stroke="#9c5a20" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-orange)"/>
+        <text x="28" y="60" fill="#9c5a20" font-size="9" font-family="Courier New">feeds</text>
+      </g>
+    </svg>
+  </div>
+
+
+  <!-- ── ACTIVE CONTRADICTIONS ── -->
+  <div class="section-header" style="margin-top:48px;">
+    <h2>Live Contradictions</h2>
+    <div class="line"></div>
+    <div style="font-family:'Courier New',monospace;font-size:10px;color:var(--muted);white-space:nowrap;">named in vault · unresolved</div>
+  </div>
+  <div class="tensions-grid">
+
+    <div class="tension-card">
+      <div class="t-num">CONTRADICTION 01</div>
+      <div class="t-title">Austin vs. NYC — No Decision Made</div>
+      <div class="t-desc">Hotel Trinity GM roadmap is Austin-specific and White Lodging-tied. NYC has been the stated primary aspiration since at least 2019. "NYC is the goal >> Austin my insurance." Both are documented as genuine. The 8-year behavioral arc says: staying in Austin.</div>
+      <span class="t-type">strategic · unresolved</span>
+    </div>
+
+    <div class="tension-card">
+      <div class="t-num">CONTRADICTION 02</div>
+      <div class="t-title">Catholic Identity vs. Absent Practice</div>
+      <div class="t-desc">Faith is the most structurally real thing in the writing. Sacramental practice is episodic (3 documented events in 6 weeks, Feb-Mar 2025, then silence). The identity is held; the practices that sustain it are not. The lust cycle's spiritual tools remain unused.</div>
+      <span class="t-type">spiritual · sequencing lag</span>
+    </div>
+
+    <div class="tension-card">
+      <div class="t-num">CONTRADICTION 03</div>
+      <div class="t-title">GM Career Track vs. Location Freedom</div>
+      <div class="t-desc">The GM path is institutional and location-tied. Location freedom and digital flexibility point in the opposite direction. Both are genuine desires. The Banquet Bot / AI path could bridge them — but that bridge has not been explicitly designed as a wealth vehicle vs. the hotel ladder.</div>
+      <span class="t-type">strategic · needs decision</span>
+    </div>
+
+    <div class="tension-card">
+      <div class="t-num">CONTRADICTION 04</div>
+      <div class="t-title">Study Ambition vs. Follow-Through</div>
+      <div class="t-desc">80+ books in the reading library. Learning goals across 5+ domains. Follow-through is inconsistent. The Spanish rubric was found and praised in the First Note (Mar 2026) — "need to keep that fresh" — and 3 months passed before structured sessions began. The ambition is not the problem. The system is.</div>
+      <span class="t-type">execution · design problem</span>
+    </div>
+
+    <div class="tension-card">
+      <div class="t-num">CONTRADICTION 05</div>
+      <div class="t-title">Marriage as Goal vs. Missing Foundation</div>
+      <div class="t-desc">Marriage and family are the emotional engine under all four stated life goals. The preconditions — stable spiritual practice, genuine community, honest daily structure — are not yet in place. This is a sequencing problem, not a timing problem. If preconditions aren't addressed, marriage remains permanently deferred.</div>
+      <span class="t-type">relational · sequencing</span>
+    </div>
+
+    <div class="tension-card">
+      <div class="t-num">CONTRADICTION 06</div>
+      <div class="t-title">Super-Competence vs. Hierarchical Friction</div>
+      <div class="t-desc">"Super-competence often leads to dismissal because it disrupts the hierarchy." The H (Hector) situation at Westin was structurally predictable: capability exceeding the surrounding authority structure produces friction, not recognition. Any environment where capability significantly exceeds the structure above will produce this. The question is positioning, not behavior modification.</div>
+      <span class="t-type">career · structural prediction</span>
+    </div>
+
+  </div><!-- /tensions-grid -->
+
+
+  <!-- ── RECURRING LOOPS ── -->
+  <div class="section-header" style="margin-top:48px;">
+    <h2>Recurring Emotional Loops</h2>
+    <div class="line"></div>
+  </div>
+  <div class="loops-grid">
+
+    <div class="loop-card">
+      <div class="l-name">Loop 01 — Elevation-Fragmentation</div>
+      <div class="l-flow">Grand synthesis → vision is clear → distance from reality felt in full → interior collapse → distraction → recovery → grand synthesis again</div>
+      <div class="l-note">Neither state is fake. The elevation keeps bringing the same clearing: "this is what you want, and you don't have it yet." The fragmentation is the descent from that clearing. The designed structure must survive both poles.</div>
+    </div>
+
+    <div class="loop-card">
+      <div class="l-name">Loop 02 — Plan-Reset Cycle</div>
+      <div class="l-flow">Ambitious planning → motivated start → inconsistent follow-through → guilt + frustration → fragmentation → new plan → repeat</div>
+      <div class="l-note">Plans produce the feeling of progress without behavioral change. A new plan gives the illusion of a restart without changing the structural condition. "The person who designs their daily routine goes further than the person who negotiates."</div>
+    </div>
+
+    <div class="loop-card">
+      <div class="l-name">Loop 03 — The Tribeless Condition (8 years)</div>
+      <div class="l-flow">Identify community need → identify specific solution (parish, BJJ, Catholic young adults) → analysis without action → isolation deepens → re-identify same solution → repeat</div>
+      <div class="l-note">Not a logistics problem. Community requires visible wanting, which creates the possibility of rejection. The "complete thinker" position (standing apart from all tribes) is simultaneously a protection. You can't be rejected by a group you haven't joined.</div>
+    </div>
+
+    <div class="loop-card">
+      <div class="l-name">Loop 04 — Lust as Structural Relief</div>
+      <div class="l-flow">Stress / fight-or-flight elevation → fragmentation state → lust as interruption of unbearable longing → guilt → spiritual backslide → more stress</div>
+      <div class="l-note">"I look to sins of the flesh to provide relief from the chaos then I wonder why I am in such pain." (March 2023) The lust is not simple desire — it is interruption of a longing that, without interruption, would be unbearable. The structural fix is reducing the longing's conditions (community, practice), not white-knuckling the behavior.</div>
+    </div>
+
+  </div><!-- /loops-grid -->
+
+
+  <!-- ── NEGLECTED GOALS ── -->
+  <div class="section-header" style="margin-top:48px;">
+    <h2>Neglected Goals</h2>
+    <div class="line"></div>
+    <div style="font-family:'Courier New',monospace;font-size:10px;color:var(--muted);white-space:nowrap;">named and not moving</div>
+  </div>
+  <div class="neglected-grid">
+    <div class="neglected-card">
+      <div class="n-label">Health</div>
+      <div class="n-text">No daily physical anchor confirmed. Weightlifting and martial arts named as goals — not active. Body regulation is upstream of everything else and getting nothing.</div>
+    </div>
+    <div class="neglected-card">
+      <div class="n-label">Event Log</div>
+      <div class="n-text">Career tracking file exists and has never been populated. 0 events logged. The metrics required for Hotel Trinity (100+ events, 5,000+ guests) are not being counted.</div>
+    </div>
+    <div class="neglected-card">
+      <div class="n-label">Wealth Strategy</div>
+      <div class="n-text">A skeleton page in the vault. Goals stated. Zero financial data. No savings targets, no investment framework, no concrete numbers. "Location freedom" has no vehicle.</div>
+    </div>
+    <div class="neglected-card">
+      <div class="n-label">Phase 1 Credentials</div>
+      <div class="n-text">ServSafe Manager (~$50), CHS, CFBE — all identified in the roadmap. None started as of June 2026. All Phase 2 career progress depends on at least one of these.</div>
+    </div>
+    <div class="neglected-card">
+      <div class="n-label">Bartending Bottles</div>
+      <div class="n-text">Bar kit purchased. Priority 1 on the current season. First bottles not yet bought. This is the literal $30 first step to the skills track unlocking the Hotel Trinity window.</div>
+    </div>
+    <div class="neglected-card">
+      <div class="n-label">Parish Attendance</div>
+      <div class="n-text">Named as the highest-leverage community option in the vault's own analysis. Both friction types are documented. Going once would clarify which friction is real vs. which is protective avoidance.</div>
+    </div>
+  </div>
+
+
+  <!-- ── NEXT ACTIONS ── -->
+  <div class="section-header" style="margin-top:48px;">
+    <h2>Concrete Next Actions</h2>
+    <div class="line"></div>
+    <div style="font-family:'Courier New',monospace;font-size:10px;color:var(--muted);white-space:nowrap;">decision-oriented · this week</div>
+  </div>
+  <div class="actions-grid">
+
+    <div class="action-card">
+      <div class="action-num">01</div>
+      <div class="action-body">
+        <div class="a-domain">Career / Skills</div>
+        <div class="a-text">Buy first bartending practice bottles — one base spirit + citrus + egg whites.</div>
+        <div class="a-why">Unlocks Skills Track 1. The gate to the Hotel Trinity window. A $40 purchase that unblocks a $60K career move.</div>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-num">02</div>
+      <div class="action-body">
+        <div class="a-domain">Faith / Relationships</div>
+        <div class="a-text">Attend Mass at St. Albert the Great or St. Mary Cathedral — this Sunday.</div>
+        <div class="a-why">Analysis has not converted to action in years. One attendance will generate real information vs. protective hypothesizing.</div>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-num">03</div>
+      <div class="action-body">
+        <div class="a-domain">Spanish</div>
+        <div class="a-text">Indirect object pronouns (le/les) → complete Entry 4 → Entry 5. Flag accents at session start.</div>
+        <div class="a-why">7 days since last session. The Grand Arc method is working — maintain the momentum.</div>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-num">04</div>
+      <div class="action-body">
+        <div class="a-domain">AI / Coding</div>
+        <div class="a-text">Confirm whether corporate alias review is done → revert Banquet Bot client names.</div>
+        <div class="a-why">This is blocking the live demo from being presentable to Ebrahim Ansari.</div>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-num">05</div>
+      <div class="action-body">
+        <div class="a-domain">Career / Metrics</div>
+        <div class="a-text">Start Event Log — log the last 5 events from memory. Start tracking forward from today.</div>
+        <div class="a-why">The Hotel Trinity metrics (100+ events, 5,000+ guests) require a log. Currently at zero.</div>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-num">06</div>
+      <div class="action-body">
+        <div class="a-domain">Personal Discipline</div>
+        <div class="a-text">Pre-decide one daily anchor — what is the one non-negotiable thing every day? Write it down now.</div>
+        <div class="a-why">Design beats negotiation. Pre-commitment beats willpower. One thing is enough to restart the architecture.</div>
+      </div>
+    </div>
+
+  </div><!-- /actions-grid -->
+
+</main>
+
+<footer>
+  THE VAULT · WEEKLY SYNTHESIS · 2026-06-26 · CLAUDE
+</footer>
+
+<script>
+  function toggle(card) {
+    const detail = card.querySelector('.card-detail');
+    if (detail) detail.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
